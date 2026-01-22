@@ -1,5 +1,5 @@
-import * as Notifications from 'expo-notifications';
-import { Platform } from 'react-native';
+import * as Notifications from "expo-notifications";
+import { Platform } from "react-native";
 
 // Configure notification behavior
 Notifications.setNotificationHandler({
@@ -18,23 +18,23 @@ export async function registerForPushNotifications() {
 
   let finalStatus = status;
 
-  if (status !== 'granted') {
+  if (status !== "granted") {
     const request = await Notifications.requestPermissionsAsync();
     finalStatus = request.status;
   }
 
-  if (finalStatus !== 'granted') {
-    console.log('Notification permission denied');
+  if (finalStatus !== "granted") {
+    console.log("Notification permission denied");
     return;
   }
 
   // Android requires channel
-  if (Platform.OS === 'android') {
-    await Notifications.setNotificationChannelAsync('default', {
-      name: 'Default',
+  if (Platform.OS === "android") {
+    await Notifications.setNotificationChannelAsync("default", {
+      name: "Default",
       importance: Notifications.AndroidImportance.MAX,
       vibrationPattern: [0, 250, 250, 250],
-      lightColor: '#2563eb',
+      lightColor: "#2563eb",
     });
   }
 }
@@ -42,11 +42,11 @@ export async function registerForPushNotifications() {
 // Trigger local push notification
 export async function sendLowStockNotification(
   productName: string,
-  stock: number
+  stock: number,
 ) {
   await Notifications.scheduleNotificationAsync({
     content: {
-      title: 'Low Stock Alert',
+      title: "Low Stock Alert",
       body: `${productName} is running low (${stock} left)`,
       sound: true,
     },
