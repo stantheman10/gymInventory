@@ -3,6 +3,16 @@
 # dependencies
 node_modules/
 
+#environment
+.env
+.env.local
+.env.production
+.expo
+ios/
+android/
+node_modules/
+
+
 # Expo
 .expo/
 dist/
